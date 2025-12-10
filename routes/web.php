@@ -9,9 +9,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -21,8 +18,12 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+
+
+
 Route::controller(NoteController::class)->middleware('auth')->group(function(){
 Route::get('notes','index')->name('notes.index');
-
+Route::get('notes/create','create')->name('notes.create');
+Route::post('notes','store')->name('notes.store');
 });
 
