@@ -14,37 +14,49 @@
          <!-- Styles / Scripts -->
           
     </head>
-    <body class="bg-[#FDFDFC]  text-[#1b1b18] flex p-6 lg:p-8   min-h-screen flex-col">
-        <header class="w-full justify-between items-center flex  text-sm mb-6 not-has-[nav]:hidden">
-            <a href="{{ url('/') }}" class="text-black font-bold hover:cursor-pointer  text-2xl hover:text-indigo-800 "                        >
-LiteNotes</a>
-            @if (Route::has('login'))
-                <nav class="flex justify-end gap-4">
-                    @auth
-                        <a
-                            href="{{ url('/notes.index') }}"
-class="text-indigo-600 hover:text-indigo-800 "                        >
-                            LiteNotes
-                        </a>
-                    @else
-                        <a
-                            href="{{ route('login') }}"
-class="text-indigo-600 hover:text-indigo-800 "                        >
-                        
-                            Log in
-                        </a>
+    <body class="bg-[#FDFDFC] text-[#1b1b18] flex p-6 lg:p-8 min-h-screen flex-col">
 
-                        @if (Route::has('register'))
-                            <a
-                                href="{{ route('register') }}"
-class="text-indigo-600 hover:text-indigo-800 "                        >
-                                Register
-                            </a>
-                        @endif
-                    @endauth
-                </nav>
-            @endif
-        </header>
-       
-    </body>
+    <header class="w-full justify-between items-center flex text-sm mb-6 not-has-[nav]:hidden">
+        <a href="{{ url('/') }}" class="text-black font-bold hover:cursor-pointer text-2xl hover:text-indigo-800">
+            LiteNotes
+        </a>
+
+        
+    </header>
+
+    <main class="flex flex-col items-center justify-center flex-1 text-center">
+        
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">
+            Organize Your Thoughts, Simply.
+        </h1>
+
+        <p class="text-lg text-gray-600 max-w-xl mb-8">
+            LiteNotes is a minimal and fast note-taking app to help you capture ideas,
+            tasks, and inspiration — without distractions.
+        </p>
+
+        @auth
+            <x-link-btn href="{{ route('notes.index') }}" class="px-6 py-3 text-lg">
+                Go to My Notes
+            </x-link-btn>
+        @else
+            <div class="flex gap-4">
+                
+
+                @if (Route::has('register'))
+                <x-link-btn href="{{ route('register') }}" class="px-6 py-3 text-lg">
+                    Get Started
+                </x-link-btn>
+                @endif
+            </div>
+        @endauth
+
+    </main>
+
+    <footer class="mt-10 text-center text-xs text-gray-500">
+        © {{ date('Y') }} LiteNotes — Minimal Notes App
+    </footer>
+
+</body>
+
 </html>
