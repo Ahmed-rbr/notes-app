@@ -19,7 +19,7 @@
     <p class="text-red-600 mt-1 text-sm">{{ $message }}</p>
 @enderror
 <x-text-area class="w-full  mt-6"     value="{{old('text',$note->text) }}"
- name='text' placeholder='Type your note...' rows=8></x-text-area>
+ name='text' placeholder='Type your note here...' rows=8></x-text-area>
 @error('text')
     <p class="text-red-600 mt-1 text-sm">{{ $message }}</p>
 @enderror
