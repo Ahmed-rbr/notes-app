@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class NoteController extends Controller
 {
@@ -47,6 +48,7 @@ $request->validate([
 
 $note=new Note([
     'user_id'=>Auth::id(),
+    'uuid'=>Str::uuid(),
     'title'=>$request->title,
     'text'=>$request->text,
 ]);
@@ -62,8 +64,10 @@ return redirect('notes');
      */
     public function show(Note $note)
     {
-        //
-return view('notes.show',compact('note'));
+        if($note->user_id!==Auth::id()){
+            abort(403);}
+
+        return view('notes.show',compact('note'));
 
         
     }
@@ -73,7 +77,10 @@ return view('notes.show',compact('note'));
      */
     public function edit(Note $note)
     {
-        //
+       if($note->user_id!==Auth::id()){
+          abort(403);
+             }
+        return view('notes.edit',compact('note'));
     }
 
     /**
@@ -81,7 +88,21 @@ return view('notes.show',compact('note'));
      */
     public function update(Request $request,Note $note)
     {
-        //
+        if($note->user_id!==Auth::id()){
+          abort(403);
+             }
+$request->validate([
+    'title'=>['required','max:120','min:4'],
+    'text'=>['required','min:10']
+]);
+
+
+$note->update([
+    'title'=>$request->title,
+    'text'=>$request->text,
+]);
+
+return redirect()->route('notes.show',$note);
     }
 
     /**
