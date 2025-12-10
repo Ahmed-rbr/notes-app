@@ -25,5 +25,6 @@ Route::controller(NoteController::class)->middleware('auth')->group(function(){
 Route::get('notes','index')->name('notes.index');
 Route::get('notes/create','create')->name('notes.create');
 Route::post('notes','store')->name('notes.store');
+Route::get('notes/{note}','show')->name('notes.show');
 });
 

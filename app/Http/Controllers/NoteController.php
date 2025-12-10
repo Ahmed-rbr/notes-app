@@ -63,6 +63,9 @@ return redirect('notes');
     public function show(Note $note)
     {
         //
+return view('notes.show',compact('note'));
+
+        
     }
 
     /**
