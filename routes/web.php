@@ -28,5 +28,6 @@ Route::post('notes','store')->name('notes.store');
 Route::get('notes/{note}','show')->name('notes.show');
 Route::get('notes/{note}/edit','edit')->name('notes.edit');
 Route::patch('notes/{note}','update')->name('notes.update');
+Route::delete('notes/{note}','destroy')->name('notes.destroy');
 });
 

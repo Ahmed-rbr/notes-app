@@ -110,7 +110,14 @@ return redirect()->route('notes.show',$note);
      */
     public function destroy(Note $note)
     {
-        //
+        if($note->user_id!==Auth::id()){
+          abort(403);
+             }
+
+$note->delete();
+
+             return redirect('notes');
+
     }
 }
 
