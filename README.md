@@ -54,7 +54,7 @@ All routes use **route model binding** for clean controller logic.
 
 ---
 
-## 🔐 Authentication (Laravel Breeze)
+##  Authentication (Laravel Breeze)
 
 The app uses Breeze with **Blade templates**, providing:
 
@@ -66,7 +66,7 @@ The app uses Breeze with **Blade templates**, providing:
 
 ---
 
-## 🎨 Frontend
+##  Frontend
 
 Styled with:
 
