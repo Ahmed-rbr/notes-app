@@ -19,4 +19,13 @@ public function show(Note $note){
 return view('notes.show',compact('note'));
 
     }
+
+   public function update(Note $note){
+  if(!$note->user()->is(Auth::user())){
+    abort(403);
+    }
+    $note->restore();
+return redirect('notes')->with('success','note restored!');
+
+    } 
 }

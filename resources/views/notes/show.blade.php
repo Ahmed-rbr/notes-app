@@ -42,12 +42,12 @@ href='{{request()->routeIs("notes.show") ? route("notes.index"): route("trashed.
 <div class="bg-white  overflow-hidden shadow-sm ">
                 <div class="p-6 flex-col items-baseline sm:flex-row flex justify-end gap-6  text-gray-900">
                   @if ($note->trashed())
- <form action="{{ route('notes.destroy',$note) }}" method="POST">
+ <form action="{{ route('trashed.update',$note) }}" method="POST">
                        @csrf
-                        @method('DELETE')
+                        @method('patch')
                       <x-primary-button                   
                       class="bg-blue-400 hover:bg-blue-500 hover:underline" 
-                       onclick=" return confirm('Restore this note!')">
+                       >
 
 Restore Note           
            </x-primary-button>  

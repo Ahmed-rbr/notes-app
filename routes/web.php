@@ -35,3 +35,4 @@ Route::delete('notes/{note}','destroy')->name('notes.destroy');
 
 Route::get('trashed',[TrashNoteController::class,'index'])->middleware('auth')->name('trashed.index');
 Route::get('trashed/{note}',[TrashNoteController::class,'show'])->withTrashed()->middleware('auth')->name('trashed.show');
+Route::patch('trashed/{note}',[TrashNoteController::class,'update'])->withTrashed()->middleware('auth')->name('trashed.update');
