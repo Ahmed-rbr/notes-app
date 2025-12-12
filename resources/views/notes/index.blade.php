@@ -7,7 +7,8 @@
 
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="p-3 flex justify-end  text-gray-900">
+            <x-flash-msg> {{session('success')}}</x-flash-msg>  
+    <div class="p-3 flex justify-end  text-gray-900">
 <x-link-btn class="justify-end"  href='{{ route("notes.create") }}'>New Note</x-link-btn>
     </div>
 <ul class="flex md:w-3/5 m-auto  w-full mt-4 flex-col ">

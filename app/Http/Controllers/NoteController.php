@@ -102,7 +102,7 @@ $note->update([
     'text'=>$request->text,
 ]);
 
-return redirect()->route('notes.show',$note);
+return redirect()->route('notes.show',$note)->with('success','Changes saved');
     }
 
     /**
@@ -116,7 +116,7 @@ return redirect()->route('notes.show',$note);
 
 $note->delete();
 
-             return redirect('notes');
+             return redirect('notes')->with('success','Note  deleted');
 
     }
 }

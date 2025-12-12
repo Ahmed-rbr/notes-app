@@ -7,7 +7,8 @@
 
     <div class="py-12">
       <div class=" max-w-7xl  mx-auto p-2 md:max-w-3xl sm:px-6   gap-2  justify-between">
-             <x-link-btn   href='{{ route("notes.index") }}'>Go Back</x-link-btn>
+
+<x-flash-msg> {{session('success')}}</x-flash-msg>             <x-link-btn   href='{{ route("notes.index") }}'>Go Back</x-link-btn>
 </div>
 
 
