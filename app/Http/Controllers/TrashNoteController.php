@@ -28,4 +28,14 @@ return view('notes.show',compact('note'));
 return redirect('notes')->with('success','note restored!');
 
     } 
+
+
+     public function destroy(Note $note){
+  if(!$note->user()->is(Auth::user())){
+    abort(403);
+    }
+    $note->forceDelete();
+return redirect('trashed')->with('success','note was deleted!');
+
+    } 
 }

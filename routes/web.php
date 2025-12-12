@@ -32,7 +32,13 @@ Route::patch('notes/{note}','update')->name('notes.update');
 Route::delete('notes/{note}','destroy')->name('notes.destroy');
 });
 
+Route::controller(TrashNoteController::class)->middleware('auth')->group(function(){
+Route::get('trashed','index')->name('trashed.index');
+Route::get('trashed/{note}','show')->name('trashed.show')->withTrashed();
+Route::patch('trashed/{note}','update')->name('trashed.update')->withTrashed();
+Route::delete('trashed/{note}','destroy')->name('trashed.destroy')->withTrashed();
+});
 
-Route::get('trashed',[TrashNoteController::class,'index'])->middleware('auth')->name('trashed.index');
-Route::get('trashed/{note}',[TrashNoteController::class,'show'])->withTrashed()->middleware('auth')->name('trashed.show');
-Route::patch('trashed/{note}',[TrashNoteController::class,'update'])->withTrashed()->middleware('auth')->name('trashed.update');
+// Route::prefix('trashed')->name('trashed.')->middleware('auth')->group(function(){
+
+// });
