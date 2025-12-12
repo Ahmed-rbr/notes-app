@@ -107,7 +107,9 @@ return redirect()->route('notes.show',$note)->with('success','Changes saved');
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Note $note)
+
+
+ public function destroy(Note $note)
     {
         if(!$note->user->is(Auth::user())){
           abort(403);
@@ -115,7 +117,7 @@ return redirect()->route('notes.show',$note)->with('success','Changes saved');
 
 $note->delete();
 
-             return redirect('notes')->with('success','Note  deleted');
+             return redirect('notes')->with('success','Note  moved to trash!');
 
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\NoteBookController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TrashNoteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,3 +32,6 @@ Route::patch('notes/{note}','update')->name('notes.update');
 Route::delete('notes/{note}','destroy')->name('notes.destroy');
 });
 
+
+Route::get('trashed',[TrashNoteController::class,'index'])->middleware('auth')->name('trashed.index');
+Route::get('trashed/{note}',[TrashNoteController::class,'show'])->withTrashed()->middleware('auth')->name('trashed.show');
