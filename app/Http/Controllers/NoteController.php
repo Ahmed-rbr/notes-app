@@ -15,9 +15,9 @@ class NoteController extends Controller
      */
     public function index()
     {
-  $user_id=Auth::id();
-  
-        $notes=Note::where('user_id',$user_id)->latest('updated_at')->paginate(5);
+        //   $notes=Note::whereBelongsTo(Auth::user())->latest('updated_at')->paginate(5);
+
+        $notes=Auth::user()->notes()->latest('updated_at')->paginate(5);
 
         return view('notes.index',compact('notes'));
 
@@ -46,16 +46,14 @@ $request->validate([
     'text'=>['required','min:10']
 ]);
 
-$note=new Note([
-    'user_id'=>Auth::id(),
+Auth::user()->notes()->create([
     'uuid'=>Str::uuid(),
     'title'=>$request->title,
     'text'=>$request->text,
 ]);
 
-$note->save();
 
-return redirect('notes');
+return redirect('notes')->with('success','note created with success!');
 
     }
 
@@ -64,7 +62,8 @@ return redirect('notes');
      */
     public function show(Note $note)
     {
-        if($note->user_id!==Auth::id()){
+        // if($note->user_id!==Auth::id()){
+        if(!$note->user->is(Auth::user())){
             abort(403);}
 
         return view('notes.show',compact('note'));
@@ -77,7 +76,7 @@ return redirect('notes');
      */
     public function edit(Note $note)
     {
-       if($note->user_id!==Auth::id()){
+        if(!$note->user->is(Auth::user())){
           abort(403);
              }
         return view('notes.edit',compact('note'));
@@ -88,7 +87,7 @@ return redirect('notes');
      */
     public function update(Request $request,Note $note)
     {
-        if($note->user_id!==Auth::id()){
+        if(!$note->user->is(Auth::user())){
           abort(403);
              }
 $request->validate([
@@ -110,7 +109,7 @@ return redirect()->route('notes.show',$note)->with('success','Changes saved');
      */
     public function destroy(Note $note)
     {
-        if($note->user_id!==Auth::id()){
+        if(!$note->user->is(Auth::user())){
           abort(403);
              }
 
