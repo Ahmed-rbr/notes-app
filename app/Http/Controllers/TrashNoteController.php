@@ -37,5 +37,12 @@ return redirect('notes')->with('success','note restored!');
     $note->forceDelete();
 return redirect('trashed')->with('success','note was deleted!');
 
+    }   
+    
+    public function empty(){
+  
+    Auth::user()->notes()->onlyTrashed()->forceDelete();
+return redirect('trashed')->with('success','All notes was deleted!');
+
     } 
 }

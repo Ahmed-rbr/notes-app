@@ -11,7 +11,16 @@
     <div class="p-3 flex justify-end  text-gray-900">
       @if (request()->routeIs('notes.index'))
         <x-link-btn class="justify-end"  href='{{ route("notes.create") }}'>New Note</x-link-btn>
-
+@else
+<form action="{{ route('trashed.empty') }}" method="POST">
+                       @csrf
+                        @method('DELETE')
+                      <x-primary-button  class="bg-red-500 hover:bg-red-700 hover:underline"  
+                       onclick=" return confirm('Are you sure you want to delete this note forever!')">
+Empty Trash        
+</x-primary-button>  
+                      
+                      </form>  
       @endif
     </div>
 <ul class="flex md:w-3/5 m-auto  w-full mt-4 flex-col ">

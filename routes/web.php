@@ -37,6 +37,7 @@ Route::get('trashed','index')->name('trashed.index');
 Route::get('trashed/{note}','show')->name('trashed.show')->withTrashed();
 Route::patch('trashed/{note}','update')->name('trashed.update')->withTrashed();
 Route::delete('trashed/{note}','destroy')->name('trashed.destroy')->withTrashed();
+Route::delete('trashed','empty')->name('trashed.empty');
 });
 
 // Route::prefix('trashed')->name('trashed.')->middleware('auth')->group(function(){
