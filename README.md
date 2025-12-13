@@ -32,7 +32,7 @@ This project follows the **MVC architecture** and demonstrates clean routing, co
 | **Blade**          | Template engine            |
 | **Laravel Breeze** | Authentication scaffolding |
 | **Tailwind CSS**   | Styling                    |
-| **MySQL / SQLite** | Database                   |
+| **MySQL** | Database                   |
 | **Eloquent ORM**   | Database interaction       |
 | **PHP 8.3+**       | Required PHP version       |
 | **Vite**           | Asset bundler              |
